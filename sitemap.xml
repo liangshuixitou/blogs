@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://liangshuixitou.github.io/blogs/repository/index.html</loc>
+    <loc>https://liangshuixitou.github.io/blogs/2021/02/18/hello-world/</loc>
     
     <lastmod>2021-02-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://liangshuixitou.github.io/blogs/2021/02/18/hello-world/</loc>
+    <loc>https://liangshuixitou.github.io/blogs/repository/index.html</loc>
     
-    <lastmod>2021-02-18</lastmod>
+    <lastmod>2021-02-19</lastmod>
     
   </url>
   
@@ -24,6 +24,20 @@
   </url>
 
   
+  <url>
+    <loc>https://liangshuixitou.github.io/blogs/tags/hexo/</loc>
+    <lastmod>2021-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>https://liangshuixitou.github.io/blogs/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2021-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 </urlset>
