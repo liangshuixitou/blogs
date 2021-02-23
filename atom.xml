@@ -6,7 +6,7 @@
   <link href="https://liangshuixitou.github.io/blogs/atom.xml" rel="self"/>
   
   <link href="https://liangshuixitou.github.io/blogs/"/>
-  <updated>2021-02-23T06:46:45.090Z</updated>
+  <updated>2021-02-23T07:26:24.913Z</updated>
   <id>https://liangshuixitou.github.io/blogs/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>1052-爱生气的书店老板</title>
+    <link href="https://liangshuixitou.github.io/blogs/2021/02/23/1052-%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/"/>
+    <id>https://liangshuixitou.github.io/blogs/2021/02/23/1052-%E7%88%B1%E7%94%9F%E6%B0%94%E7%9A%84%E4%B9%A6%E5%BA%97%E8%80%81%E6%9D%BF/</id>
+    <published>2021-02-23T07:21:29.000Z</published>
+    <updated>2021-02-23T07:26:24.913Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1052爱生气的书店老板"><a class="markdownIt-Anchor" href="#1052爱生气的书店老板"></a> [1052]爱生气的书店老板</h2><h4 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h4><p>今天，书店老板有一家店打算试营业 customers.length 分钟。每分钟都有一些顾客（customers[i]）会进入书店，所有这些顾客都会在那一分钟结束后离开。</p><p>在某些时候，书店老板会生气。 如果书店老板在第 i 分钟生气，那么 grumpy[i] = 1，否则 grumpy[i] = 0。 当书店老板生气时，那一分钟的顾客就会不满意，不生气则他们是满意的。</p><p>书店老板知道一个秘密技巧，能抑制自己的情绪，可以让自己连续 X 分钟不生气，但却只能使用一次。</p><p>请你返回这一天营业下来，最多有多少客户能够感到满意的数量。</p><p>示例：</p><blockquote><p>输入：customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], X = 3</p><p>输出：16</p><p>解释：</p><p>书店老板在最后 3 分钟保持冷静。</p><p>感到满意的最大客户数量 = 1 + 1 + 1 + 1 + 7 + 5 = 16.</p></blockquote><h4 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h4><p>利用滑动窗口即可，将两个输入的数组进行相乘，然后利用滑动窗口计算长度为X的窗口内最大可节省的不生气的收益，再与之前的满意数量相加即可。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSatisfied</span><span class="params">(<span class="keyword">int</span>[] customers, <span class="keyword">int</span>[] grumpy, <span class="keyword">int</span> X)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = customers.length;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 总的可以达到的满意程度</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] grumpys = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            grumpys[i] = customers[i] * grumpy[i];</span><br><span class="line">            <span class="keyword">if</span> (grumpy[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                sum += customers[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; X; ++i) &#123;</span><br><span class="line">            ans += grumpys[i];</span><br><span class="line">        &#125;</span><br><span class="line">        max = ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n - X + <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            ans += grumpys[i + X - <span class="number">1</span>];</span><br><span class="line">            ans -= grumpys[i - <span class="number">1</span>];</span><br><span class="line">            max = Math.max(ans, max);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max + sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;1052爱生气的书店老板&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1052爱生气的书店老板&quot;&gt;&lt;/a&gt; [1052]爱生气的书店老板&lt;/h2&gt;
+&lt;h4 id=&quot;题目描述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; </summary>
+      
+    
+    
+    
+    <category term="leetcode" scheme="https://liangshuixitou.github.io/blogs/categories/leetcode/"/>
+    
+    
+    <category term="数组" scheme="https://liangshuixitou.github.io/blogs/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="滑动窗口" scheme="https://liangshuixitou.github.io/blogs/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>766-托普利茨矩阵</title>
