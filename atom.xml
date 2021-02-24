@@ -6,7 +6,7 @@
   <link href="http://www.l1hy.top/atom.xml" rel="self"/>
   
   <link href="http://www.l1hy.top/"/>
-  <updated>2021-02-23T07:32:38.471Z</updated>
+  <updated>2021-02-24T15:05:49.536Z</updated>
   <id>http://www.l1hy.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>832-翻转图像</title>
+    <link href="http://www.l1hy.top/2021/02/24/832-%E7%BF%BB%E8%BD%AC%E5%9B%BE%E5%83%8F/"/>
+    <id>http://www.l1hy.top/2021/02/24/832-%E7%BF%BB%E8%BD%AC%E5%9B%BE%E5%83%8F/</id>
+    <published>2021-02-24T15:03:06.000Z</published>
+    <updated>2021-02-24T15:05:49.536Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="832翻转图像"><a class="markdownIt-Anchor" href="#832翻转图像"></a> [832]翻转图像</h2><h4 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h4><p>给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。</p><p>水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。</p><p>反转图片的意思是图片中的 0 全部被 1 替换， 1 全部被 0 替换。例如，反转 [0, 1, 1] 的结果是 [1, 0, 0]。</p><p>示例 1：</p><blockquote><p>输入：[[1,1,0],[1,0,1],[0,0,0]]</p><p>输出：[[1,0,0],[0,1,0],[1,1,1]]</p><p>解释：首先翻转每一行: [[0,1,1],[1,0,1],[0,0,0]]；</p><p>然后反转图片: [[1,0,0],[0,1,0],[1,1,1]]</p></blockquote><p>示例 2：</p><blockquote><p>输入：[[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]</p><p>输出：[[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</p><p>解释：首先翻转每一行: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]]；</p><p>然后反转图片: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</p></blockquote><h4 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h4><h6 id="暴力求解"><a class="markdownIt-Anchor" href="#暴力求解"></a> 暴力求解</h6><p>根据题目描述进行对应操作即可，在原来的数组上，遍历[0, n / 2)列进行反转即可</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] flipAndInvertImage(<span class="keyword">int</span>[][] A) &#123;</span><br><span class="line">        <span class="keyword">int</span> m = A.length;</span><br><span class="line">        <span class="keyword">int</span> n = A[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n / <span class="number">2</span>; ++j) &#123;</span><br><span class="line">                <span class="keyword">int</span> t = A[i][j];</span><br><span class="line">                A[i][j] = A[i][n - <span class="number">1</span> - j];</span><br><span class="line">                A[i][n - <span class="number">1</span> - j] = t;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                A[i][j] = <span class="number">1</span> - A[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id=""><a class="markdownIt-Anchor" href="#"></a> </h6>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;832翻转图像&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#832翻转图像&quot;&gt;&lt;/a&gt; [832]翻转图像&lt;/h2&gt;
+&lt;h4 id=&quot;题目描述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#题目描述&quot;&gt;&lt;/</summary>
+      
+    
+    
+    
+    <category term="leetcode" scheme="http://www.l1hy.top/categories/leetcode/"/>
+    
+    
+    <category term="数组" scheme="http://www.l1hy.top/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
   
   <entry>
     <title>1052-爱生气的书店老板</title>
