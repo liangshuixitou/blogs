@@ -6,7 +6,7 @@
   <link href="http://www.l1hy.top/atom.xml" rel="self"/>
   
   <link href="http://www.l1hy.top/"/>
-  <updated>2021-03-01T13:27:22.507Z</updated>
+  <updated>2021-03-01T13:46:58.284Z</updated>
   <id>http://www.l1hy.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>剑指Offer-树的子结构</title>
+    <link href="http://www.l1hy.top/2021/03/01/%E5%89%91%E6%8C%87Offer-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/"/>
+    <id>http://www.l1hy.top/2021/03/01/%E5%89%91%E6%8C%87Offer-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/</id>
+    <published>2021-03-01T13:41:51.000Z</published>
+    <updated>2021-03-01T13:46:58.284Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="树的子结构"><a class="markdownIt-Anchor" href="#树的子结构"></a> 树的子结构</h2><h4 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h4><p>输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)</p><p>B是A的子结构， 即 A中有出现和B相同的结构和节点值。</p><p>例如:</p><p>给定的树 A:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    3</span><br><span class="line">   &#x2F; \</span><br><span class="line">  4   5</span><br><span class="line"> &#x2F; \</span><br><span class="line">1   2</span><br></pre></td></tr></table></figure><p>给定的树 B：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  4 </span><br><span class="line"> &#x2F;</span><br><span class="line">1</span><br></pre></td></tr></table></figure><p>返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。</p><p>示例 1：</p><p>输入：A = [1,2,3], B = [3,1]</p><p>输出：false</p><p>示例 2：</p><p>输入：A = [3,4,5,1,2], B = [4,1]</p><p>输出：true</p><h4 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h4><p>解题思路在于先在A树中搜寻和B根节点相同的节点然后调用子函数recur进行递归搜寻即可，下面给出的代码是参考了题解后的代码（惊为天人）</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubStructure</span><span class="params">(TreeNode A, TreeNode B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (A != <span class="keyword">null</span> &amp;&amp; B != <span class="keyword">null</span>) &amp;&amp; (recur(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">recur</span><span class="params">(TreeNode A, TreeNode B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (B == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.val != B.val) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> recur(A.left, B.left) &amp;&amp; recur(A.right, B.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;树的子结构&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#树的子结构&quot;&gt;&lt;/a&gt; 树的子结构&lt;/h2&gt;
+&lt;h4 id=&quot;题目描述&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#题目描述&quot;&gt;&lt;/a&gt; 题目描述&lt;</summary>
+      
+    
+    
+    
+    <category term="剑指Offer" scheme="http://www.l1hy.top/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+    <category term="medium" scheme="http://www.l1hy.top/tags/medium/"/>
+    
+    <category term="树" scheme="http://www.l1hy.top/tags/%E6%A0%91/"/>
+    
+  </entry>
   
   <entry>
     <title>剑指Offer-数值的整数次方</title>
